@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_social_network_account_form" model="ir.ui.view">
+            <field name="name">view.social.network.account.form</field>
+            <field name="model">social.network.account</field>
+            <field name="arch" type="xml">
+                <form string="Profile">
+                    <sheet>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="name"/>
+                                <field name="password" password="True"/>
+                                <field name="date"/>
+                                <field name="customer_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_social_network_form" model="ir.ui.view">
+            <field name="name">view.social.network.form</field>
+            <field name="model">social.network</field>
+            <field name="arch" type="xml">
+                <form string="Social">
+                    <sheet>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_social_network_tree" model="ir.ui.view">
+            <field name="name">view.social.network.tree</field>
+            <field name="model">social.network</field>
+            <field name="arch" type="xml">
+                <tree string="Profile">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_social_network_account_tree" model="ir.ui.view">
+            <field name="name">view.social.network.account.tree</field>
+            <field name="model">social.network.account</field>
+            <field name="arch" type="xml">
+                <tree string="Profile">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="customer_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_social_network_view" model="ir.actions.act_window">
+            <field name="name">Profiles</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">social.network.account</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click "New" for adding new elements.
+                </p>
+                <p>
+                    Click "New" for adding new elements.
+                </p>
+            </field>
+        </record>
+
+        <record id="view_res_partner_form" model="ir.ui.view">
+            <field name="name">view.res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Social Network">
+                        <xpath expr="//field[@name='category_id']" position="after">
+                            <field name="social_id"/>
+                        </xpath>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    <menuitem id="menu_social_network_root" name="Social Network" sequence="10"/>
+
+    <menuitem id="menu_social_network_categ" name="Social" parent="menu_social_network_root" sequence="0"/>
+
+    <menuitem id="menu_social_network" name="Social Network" parent="menu_social_network_categ" sequence="0"
+                  action="action_social_network_view"/>
+    </data>
+</odoo>
