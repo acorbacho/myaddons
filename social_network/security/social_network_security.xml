@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="module_category_social">
+            <field name="name">Social Network</field>
+            <field name="description">Social Network Category</field>
+        </record>
+
+        <record model="res.groups" id="group_basic">
+            <field name="name">Basic</field>
+            <field name="category_id" ref="module_category_social"/>
+        </record>
+
+        <record model="res.groups" id="group_comunity_manager">
+            <field name="name">Community Manager</field>
+            <field name="category_id" ref="module_category_social"/>
+            <field name="implied_ids" eval="[(4, ref('group_basic'))]"/>
+        </record>
+    </data>
+</odoo>
